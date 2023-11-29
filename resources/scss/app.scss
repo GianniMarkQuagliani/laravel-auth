@@ -1,1 +1,24 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+header{
+    height: 60px;
+}
+
+.main-wrapper{
+    height: calc(100% - 60px);
+}
+
+aside{
+    width: 250px;
+    height: 100%;
+    ul{
+        list-style: none;
+        a{
+            text-decoration: none;
+            color: white;
+            a:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
