@@ -5,19 +5,19 @@ header{
 }
 
 .main-wrapper{
-    height: calc(100% - 60px);
-}
+    height: calc(100vh - 60px);
 
-aside{
-    width: 250px;
-    height: 100%;
-    ul{
-        list-style: none;
-        a{
-            text-decoration: none;
-            color: white;
-            a:hover{
-                text-decoration: underline;
+    aside{
+        width: 250px;
+        height: 100%;
+        ul{
+            list-style: none;
+            li{
+                a{
+                    color: white;
+                    text-decoration: none;
+                    text-align: left;
+                }
             }
         }
     }
