@@ -84,6 +84,10 @@ class CategoryController extends Controller
     {
         $val_data = $request->validate([
             'name' => 'required|min:2|max:20',
+        ],[
+            'name.required' => 'Il nome della categoria è obbligatorio',
+            'name.min' => 'Il nome della categoria deve avere almeno 2 caratteri',
+            'name.max' => 'Il nome della categoria deve avere al massimo 20 caratteri',
         ]);
         dd($val_data);
 
