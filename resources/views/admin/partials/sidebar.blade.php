@@ -1,17 +1,17 @@
 <aside class="bg-dark">
     <nav>
-        <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" href="{{ route('home') }}">Dashboard</a>
+        <ul>
+            <li class="mb-3">
+              <a target="_blank" href="{{ route('home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.home') }}">Dashboard</a>
+            <li class="mb-3">
+                <a href="{{ route('admin.home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard admin</a>
               </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.posts.index') }}">Elenco post</a>
+            <li class="mb-3">
+              <a href="{{ route('admin.posts.index') }}"><i class="fa-solid fa-list"></i> Elenco post</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.categories.index') }}">Elenco Categorie</a>
+            <li class="mb-3">
+              <a href="{{ route('admin.categories.index') }}"><i class="fa-solid fa-layer-group"></i> Elenco Categorie</a>
             </li>
         </ul>
     </nav>

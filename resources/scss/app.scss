@@ -6,18 +6,25 @@ header{
 
 .main-wrapper{
     height: calc(100vh - 60px);
+    .from-hidden{
+        width: 100%;
+        border: none;
+        a:focus{
+            border: none;
+            outline: none;
+        }
+    }
 
     aside{
         width: 250px;
         height: 100%;
         ul{
             list-style: none;
-            li{
-                a{
-                    color: white;
-                    text-decoration: none;
-                    text-align: left;
-                }
+            padding-top: 30px;
+            a{
+                color: white;
+                text-decoration: none;
+                text-align: left;
             }
         }
     }

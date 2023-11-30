@@ -80,9 +80,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $val_data = $request->validate([
+            'name' => 'required|min:2|max:20',
+        ]);
+        dd($val_data);
+
     }
 
     /**
