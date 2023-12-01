@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Elenco post</h1>
-    <a href="#" class="btn btn-primary">Crea un nuovo post</a>
+    <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">Crea un nuovo post</a>
     <table class="table table-striped">
         <thead>
             <tr>
