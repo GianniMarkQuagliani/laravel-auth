@@ -22,7 +22,7 @@
                     <td>{{ $post->reading_time }} min</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i>Visualizza</a>
-                        <a href="#" class="btn btn-warning">Modifica</a>
+                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-warning">Modifica</a>
                     </td>
                 </tr>
             @endforeach
