@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Functions\Helper;
 
 class CategoryController extends Controller
 {
@@ -44,7 +45,7 @@ class CategoryController extends Controller
        }else {
             $new_category = new Category();
             $new_category->name = $request->name;
-            $new_category->slug = Str::slug($request->name, '-');
+            $new_category->slug = Helper::generateSlug($request->name, Category::class);
             $new_category->save();
             return redirect()->route('admin.categories.index')->with('success', 'Categoria creata con successo');
 
@@ -82,16 +83,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+
         $val_data = $request->validate([
             'name' => 'required|min:2|max:20',
         ],[
-            'name.required' => 'Il nome della categoria è obbligatorio',
-            'name.min' => 'Il nome della categoria deve avere almeno 2 caratteri',
-            'name.max' => 'Il nome della categoria deve avere al massimo 20 caratteri',
+            'name.required' => 'Devi inserire il nome della categoria',
+            'name.min' => 'Il nome della categoria deve essere minimo 2 caratteri',
+            'name.max' => 'Il nome della categoria deve essere massimo 20 caratteri'
         ]);
-        dd($val_data);
 
+        $exixts = Category::where('name', $request->name)->first();
+        if($exixts){
+            return redirect()->route('admin.categories.index')->with('error', 'Categoria già presente');
+        }
+
+        $val_data['slug'] = Helper::generateSlug($request->name, Category::class);
+
+        $category->update($val_data);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria aggiornata con successo');
     }
+
 
     /**
      * Remove the specified resource from storage.
