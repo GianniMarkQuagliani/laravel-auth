@@ -11,6 +11,9 @@
               <a href="{{ route('admin.posts.index') }}"><i class="fa-solid fa-list"></i> Elenco post</a>
             </li>
             <li class="mb-3">
+                <a href="{{ route('admin.posts.create') }}"><i class="fa-solid fa-folder-plus"></i> Nuovo Post</a>
+              </li>
+            <li class="mb-3">
               <a href="{{ route('admin.categories.index') }}"><i class="fa-solid fa-layer-group"></i> Elenco Categorie</a>
             </li>
         </ul>

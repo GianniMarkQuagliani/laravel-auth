@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
+use App\Functions\Helper;
 
 class PostController extends Controller
 {
@@ -26,7 +28,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Inserimento nuovo post';
+        $method = 'POST';
+        $route = route('admin.posts.store');
+        $post = null;
+        return view('admin.posts.create-edit', compact('title','method', 'route', 'post'));
     }
 
     /**
@@ -35,9 +41,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['title'], Post::class);
+        $form_data['date'] = date('Y-m-d');
+        $new_post = Post::create($form_data);
+
+        return redirect()->route('admin.posts.show', $new_post);
+
     }
 
     /**
@@ -57,9 +69,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $title = 'Modifica post';
+        $method = 'PUT';
+        $route = route('admin.posts.update', $post->id);
+        return view('admin.posts.create-edit', compact('title','method', 'route', 'post'));
     }
 
     /**
@@ -69,9 +84,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $form_data = $request->all();
+        if($form_data['title']!= $post->title){
+            $form_data['slug'] = Helper::generateSlug($form_data['title'], Post::class);
+        }else{
+            $form_data['slug'] = $post->slug;
+        }
+
+        $form_data['date'] = date('Y-m-d');
+
+        $post->update($form_data);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
