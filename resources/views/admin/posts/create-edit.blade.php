@@ -15,6 +15,8 @@
 </div>
 @endif
 
+
+
 <div class="row">
     <div class="col-8">
         <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
@@ -22,7 +24,8 @@
             @method($method)
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo post *</label>
-                <input id="title" class="form-control @error('title') is-invalid @enderror" name="title" type="text" value="{{ old('title', $post?->title) }}">
+                <input id="title" class="form-control @error('title') is-invalid @enderror" name="title" type="text" value="{{ old('title', $post?->title) }}"
+                >
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -36,10 +39,14 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input id="image" class="form-control @error('image') is-invalid @enderror" name="image" type="file" value="{{ old('image', $post?->image) }}">
+                <input
+                  id="image" class="form-control @error('image') is-invalid @enderror" name="image" type="file" value="{{ old('image', $post?->image) }}">
                 @error('image')
                     <p class="text-danger">{{ $image }}</p>
                 @enderror
+                @if ($post)
+                <img width="150" src="{{ asset('storage/' . $post->image) }}"  />
+                @endif
             </div>
             <div class="form-floating mb-5">
                 <textarea class="form-control" placeholder="Testo del post" id="text" name="text" style="height: 200px">{{ old('text',$post?->text)  }}</textarea>
